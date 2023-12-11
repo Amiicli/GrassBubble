@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa667850bdbc84562a51afaa147d95d6, type: 3}
+  m_Name: GrassLevel
+  m_EditorClassIdentifier: 
+  namae: Ellean Fields
+  mapTexture: {fileID: 2800000, guid: 18c06d373544f4e4c822d02e6f40cf55, type: 3}
+  minZoomDistance: 15
+  maxZoomDistance: 23.1
+  mapSize: 15
+  time: 30
+  color1: {r: 0.3706861, g: 0.6698113, b: 0.3443841, a: 1}
+  color2: {r: 0.21698111, g: 0.16081333, b: 0.08290316, a: 1}
+  variance: 0.188
+  track: {fileID: 8300000, guid: 330710d080f6d4ded85605bf5e12ce30, type: 3}
+  grassHopperCount: 50
+  ambientColor: {r: 0.3529412, g: 0.44705883, b: 0.6431373, a: 0}
+  skybox: {fileID: 2100000, guid: f4fec70405bd543fdab7ac8174021502, type: 2}
