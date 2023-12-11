@@ -1,5 +1,5 @@
-Shader "Milan/Bubbleshadow"{
-	//show values to edit in inspector
+Shader "Milan/Bubbleshadow"
+{
 	Properties
     {
 		_Color ("Color", Color) = (0, 0, 0, 1)
@@ -15,10 +15,10 @@ Shader "Milan/Bubbleshadow"{
 
 		ZWrite off
 
-		Pass{
+		Pass
+		{
 			CGPROGRAM
 
-			//include useful shader functions
 			#include "UnityCG.cginc"
 
 			#pragma vertex vert
@@ -31,13 +31,11 @@ Shader "Milan/Bubbleshadow"{
 
 			sampler2D_float _CameraDepthTexture;
 
-			//the mesh data thats read by the vertex shader
 			struct appdata
             {
 				float4 vertex : POSITION;
 			};
 
-			//the data thats passed from the vertex to the fragment shader and interpolated by the rasterizer
 			struct v2f
             {
 				float4 position : SV_POSITION;

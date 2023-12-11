@@ -78,9 +78,6 @@ Shader "Custom/Grasshopper"
 
         int _DivisionSection;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
         #if defined(UNITY_PROCEDURAL_INSTANCING_ENABLED)
             StructuredBuffer<Grasshopper> grasshoppers;
         #endif
@@ -110,7 +107,6 @@ Shader "Custom/Grasshopper"
                 _Scale = 1;
                 _DivisionSection = grasshopper.state;
                 _Frame = grasshopper.frame;
-                // _Scale = cos(_Time.y * unity_InstanceID);
                 unity_ObjectToWorld._m00_m11_m22 = _Scale;
                 _Rotation = grasshopper.radians;
                 _Color.rgb = grasshopper.color;
@@ -125,7 +121,6 @@ Shader "Custom/Grasshopper"
             float vertexID = v.texcoord1.x;
             float textureTime = _Frame / 32;
             float4 animUV = float4(v.texcoord1.x,v.texcoord1.y,0,0);
-            // float4 uv = float4(vertexID, _Frame, 0, 0);
             _Frame = _Frame * 0.125;
             float section = _DivisionSection * 0.125;
             animUV.x = vertexID;
@@ -134,17 +129,12 @@ Shader "Custom/Grasshopper"
             
             float3 finalPosition = lerp(_minBounds, _maxBounds, currentAnimationTexturePos.xyz);
             float3 worldPos = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1)).xyz;
-            // // Grasshopper grasshopper = grasshoppers[unity_InstanceID];
-            // worldPos.xyz = finalPosition;
+
             v.vertex.xyz = finalPosition;
-            // v.vertex.xyz = mul(unity_WorldToObject, float4(worldPos, 1)).xyz;
-            // v.vertex.xyz += sin(_Time.y * 20) * 0.1;
-            // o.customColor = abs(v.normal);'
-            // float2x2 rotationMatrix = GetRotMatrix(grasshopper.radians,v.vertex);
+
             float2x2 rotationMatrix = GetRotMatrix(_Rotation - 90,v.vertex);
-            // o.position = finalPosition;
             
-            v.vertex.xz = mul(rotationMatrix, v.vertex.xz); //Might need to give a Vector3 to em, maybe try if statement?
+            v.vertex.xz = mul(rotationMatrix, v.vertex.xz);
         }
 
         void surf (Input IN, inout SurfaceOutputStandard o)
